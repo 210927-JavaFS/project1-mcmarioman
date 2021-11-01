@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="css/istyle.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <title>Reimbursement help desk</title>
+
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header id="header" class="fixed-top align-items-center">
+        <div class="container d-flex align-items-center pt-1">
+
+            <div class="logo mr-auto">
+              <a href="helpdesk.html"><img src="images/logo_sm.png" alt="" class="img-fluid"></a>
+            </div>
+            <div class="ms-auto">
+                <ul class="list-group list-group-horizontal">
+                    <li  class="list-group-item list-group-item-action"><a href="#" ><i class='bx bx-user' ></i> <span id="lblUserName"></span></li></a>
+                    <li  class="list-group-item list-group-item-action"><a href="#" onclick="logout();"><i class='bx bx-log-out'></i> Logout</li></a>
+                </ul>
+                
+            </div>
+          </div>
+    </header>
+    <section id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link active" id="myreimbursements-tab" data-bs-toggle="tab" data-bs-target="#myreimbursements" type="button" role="tab" aria-controls="myreimbursements" aria-selected="true">My Reimbursements</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="newreimbursement-tab" data-bs-toggle="tab" data-bs-target="#newreimbursement" type="button" role="tab" aria-controls="newreimbursement" aria-selected="false">New reimbursement</button>
+                        </li>
+                        <li class="nav-item" role="presentation" id="tabRequets">
+                          <button class="nav-link" id="requests-tab" onclick="loadTicketsByStatus(1);" data-bs-toggle="tab" data-bs-target="#requests" type="button" role="tab" aria-controls="requests" aria-selected="false">Requests</button>
+                        </li>
+                      </ul>
+                      <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="myreimbursements" role="tabpanel" aria-labelledby="myreimbursements-tab">
+                            <h3><i class='bx bx-money'></i> My Reimbursements</h3>
+
+                            <table class="table mt-5">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th><th>Amount</th><th>Type</th><th>Status</th><th>Submitted</th><th style="text-align: center;">Receipt</th><th style="text-align: center;">Resolved</th><th style="text-align: center;">Resolver</th>
+                                    </tr>
+                                </thead>
+                                <tbody id ="tbReimbursement">
+        
+                                </tbody>                        
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="newreimbursement" role="tabpanel" aria-labelledby="newreimbursement-tab">
+                            <h3><i class='bx bx-plus-circle'></i> New reimbursement request</h3>
+                           
+                                <div class="row mt-5">
+                                    <div class="col-md-6">
+                                      <form>
+                                        <div class="form-floating mb-3">
+                                            <textarea class="form-control" placeholder="Leave a description here" id="txtDescription" style="height: 100px" required></textarea>
+                                            <label for="txtDescription">Description</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input type="number" class="form-control" id="txtAmount" placeholder="Amount" required>
+                                            <label for="txtAmount">Amount</label>
+                                          </div>
+                                          <div class="form-floating mb-3">
+                                            <select class="form-select" id="listType" aria-label="Selecting type">
+                                              <option selected value="0">Please select a type</option>
+                                              <option value="1">LODGING</option>
+                                              <option value="2">TRAVEL</option>
+                                              <option value="3">FOOD</option>
+                                              <option value="4">OTHER</option>
+                                            </select>
+                                            <label for="listType">Reimbursement type</label>
+                                          </div>
+                                          <div class="mb-3">
+                                            <label for="receiptFile" class="form-label">Attach a receipt</label>
+                                            <input class="form-control" type="file" id="receiptFile">
+                                          </div>
+                                        </form>
+                                          <div class="d-grid gap-2 col-6 mt-5">
+                                            <button type="submit" onclick="addReimbursement();" class=" btn mybtn btn-outline-secondary tx-tfm" id="btnLogin">Submit reimbursement</button>
+                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div id="newSuccess" style="display: none;">
+                                            <div class="alert alert-success d-flex align-items-center" role="alert">
+                                                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                                                <div>
+                                                    Ticket created successfully.
+                                                </div>                                            
+                                              </div>
+                                        </div>       
+                                    </div>
+                                </div>
+                         
+                           
+                        </div>
+                        <div class="tab-pane fade" id="requests" role="tabpanel" aria-labelledby="requests-tab">
+                            <h3><i class='bx bx-list-check'></i> Reimbursement requests</h3>
+                            <table class="table mt-5" id="tblRequests">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th><th>Amount</th><th>Type</th><th>Status</th><th>Submitted</th><th>Receipt</th><th style="text-align: center;">Approve</th><th style="text-align: center;">Deny</th>
+                                    </tr>
+                                </thead>
+                                <tbody id ="tbRequests">
+        
+                                </tbody>                        
+                            </table>
+                            <div id="noPending" style="display: none;" class="mt-5">
+                                <div class="alert alert-warning alert-dismissible d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+                                    <div >
+                                        You're All Caught Up.
+                                    </div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                  </div>
+                            </div>
+                        </div>
+                      </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Button trigger modal --> 
+  <!-- Modal -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+    </symbol>
+    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+    </symbol>
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </symbol>
+  </svg>
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Reimbursement Approval</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul>
+              <li>
+                  Description: <span id="modalDescription"></span>
+              </li>
+              <li>
+                  Amount: <span id="modalAmount"></span>
+              </li>
+              <li>
+                  Employee: <span id="modalAuthor"></span>
+              </li>              
+          </ul>
+          <p>Are you sure do you want to approve this reimbursement?  
+        </p>
+        <div id="modalSuccess" style="display: none;">
+            <div class="alert alert-success d-flex align-items-center" role="alert" id="modalAlert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                <div>
+                    Reimbursement status updated successfully.
+                </div>
+              </div>
+        </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-success" id="modalBtnApprove" onclick="approveReimbursement();">Approve</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <footer class="mt-auto">
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                   
+                    <p>2021 &copy; - All rights and lefts well placed.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/helpdesk.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+
+#header{
+    border-bottom: 1px solid #efefef;
+    padding: 10px;
+}
+.list-group-item{
+    border: none;
+}
+.list-group-item-action{
+    width:fit-content;
+}
+a:link, a:visited, .nav-link{
+    text-decoration: none;
+    color:#777777;
+    font-weight: 600;
+    transition: 1s;
+}
+a:hover, .nav-link:hover{
+    color:#F26925;
+}
+#content{
+    margin-top: 200px;
+}
+h3{
+    color: #202020;
+    margin-top: 75px;
+}
+.btn-outline-secondary {
+    color: #F26925 !important;
+    border-color: #F26925 !important;
+}
+.btn-outline-secondary:hover{
+    background-color: #f0a580 !important;
+    color: white !important;
+}
+footer p{
+    font-size: small;
+}
+.action{
+    font-size: 125%;
+    text-align: center;
+}
+td{
+    vertical-align: middle;
+}
