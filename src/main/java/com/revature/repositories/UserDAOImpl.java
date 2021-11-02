@@ -20,11 +20,18 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User getUserByUserName(String userName) {
 		// TODO Auto-generated method stub
-		Session session =  HibernateUtil.getSession();
-		User user = session.byNaturalId(User.class)
-		                   .using("userName",userName)
-		                   .load();
-		return user;
+		try {
+			Session session =  HibernateUtil.getSession();
+			User user = session.byNaturalId(User.class)
+			                   .using("userName",userName)
+			                   .load();
+			return user;
+		}
+		catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		return null;
+		
 	}
 
 	@Override
