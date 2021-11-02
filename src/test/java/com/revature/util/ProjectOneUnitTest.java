@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Session;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,7 @@ import com.revature.services.LoginService;
 import com.revature.services.ReimbursementService;
 import com.revature.services.ReimbursementStatusService;
 import com.revature.services.ReimbursementTypeService;
+import com.revature.utils.HibernateUtil;
 import com.revature.models.UserDTO;
 import com.revature.models.Reimbursement;
 
@@ -47,7 +49,13 @@ public class ProjectOneUnitTest {
 		testUser = loginService.getUserByUserName(userDto.username);
 	}
 	
-	@Test
+	@Test void testSession(){
+		log.info("In testSession");
+		Session session = HibernateUtil.getSession();
+		assertTrue(session!=null);
+	}
+	
+	/*@Test
 	public void testLogin() {
 		log.info("In testLogin");
 		result = loginService.login(userDto);
@@ -120,7 +128,7 @@ public class ProjectOneUnitTest {
 		Reimbursement reimbursement = list.get(0);
 		reimbursement.setReimbursementStatus(reimbursementStatusService.getReimbursementStatusById(2));
 		assertTrue(reimbursementService.updateReimbursement(reimbursement));
-	}
+	}*/
 	
 	@AfterAll
 	public static void clearProjectOneUtil() {
