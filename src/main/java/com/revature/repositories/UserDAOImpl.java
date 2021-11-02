@@ -3,13 +3,16 @@ package com.revature.repositories;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.revature.controllers.ReimbursementController;
 import com.revature.models.User;
 import com.revature.models.UserDTO;
 import com.revature.utils.HibernateUtil;
 
 public class UserDAOImpl implements UserDAO {
-
+	private static Logger log = LoggerFactory.getLogger(ReimbursementController.class);
 	@Override
 	public List<User> getUsers() {
 		// TODO Auto-generated method stub
@@ -28,7 +31,7 @@ public class UserDAOImpl implements UserDAO {
 			return user;
 		}
 		catch(Exception ex) {
-			System.out.println(ex.getMessage());
+			log.error(ex.getMessage());
 		}
 		return null;
 		
