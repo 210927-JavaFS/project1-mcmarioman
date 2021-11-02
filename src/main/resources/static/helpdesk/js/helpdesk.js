@@ -1,4 +1,5 @@
-const URL = "http://localhost:8081/";
+//const URL = "http://localhost:8081/";
+const URL = "http://35.86.125.91:8081/";
 
 let requestsLoaded = false;
 let glovalUserId;
