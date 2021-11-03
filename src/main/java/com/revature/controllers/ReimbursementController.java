@@ -153,6 +153,7 @@ public class ReimbursementController implements Controller {
 				FileUtils.copyInputStreamToFile(file.getContent(), new File("upload/" + file.getFilename()));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
+				System.err.println(System.getProperty("user.home"));
 				e.printStackTrace();
 			}
 	    });
