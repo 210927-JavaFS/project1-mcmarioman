@@ -150,7 +150,7 @@ public class ReimbursementController implements Controller {
 		ctx.uploadedFiles("receipt").forEach(file -> {
 	        try {
 	        	System.out.println(file.getFilename());
-				FileUtils.copyInputStreamToFile(file.getContent(), new File("upload/" + file.getFilename()));
+				FileUtils.copyInputStreamToFile(file.getContent(), new File("/home/ec2-user/upload/" + file.getFilename()));
 			} catch (IOException e) {
 				// Print stack trace
 				System.err.println(System.getProperty("user.home"));
