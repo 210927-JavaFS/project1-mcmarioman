@@ -161,7 +161,7 @@ public class ReimbursementController implements Controller {
 	
 	public Handler downloadFile = (ctx) -> {
 		
-		File localFile = new File("upload/" + ctx.pathParam("filename"));
+		File localFile = new File("/home/ec2-user/upload/" + ctx.pathParam("filename"));
         InputStream inputStream = new BufferedInputStream(new FileInputStream(localFile));
         ctx.header("Content-Disposition", "attachment; filename=\"" + localFile.getName() + "\"");
         ctx.header("Content-Length", String.valueOf(localFile.length()));
