@@ -13,14 +13,18 @@ Employees must select the type of reimbursement as: LODGING, TRAVEL, FOOD, or OT
 **Logical Model**
 ![](./imgs/logical.jpg)
 
+
 **Physical Model**
 ![](./imgs/physical.jpg)
+
 
 **Use Case Diagram**
 ![](./imgs/use-case.jpg)
 
+
 **Activity Diagram**
 ![](./imgs/activity.jpg)
+
 
 ## Technical Requirements
 
@@ -28,20 +32,23 @@ The back-end system shall use Hibernate to connect to an AWS RDS Postgres databa
 
 **Stretch Goals:**
 * Replace HTML/JavaScript with an Angular single page application. 
-* Users can upload a document or image of their receipt when submitting reimbursements which can stored in the database and reviewed by a financial manager. (Implemented)
-* Application shall be hosted remotely on an EC2. (Implemented)
-* Static files (webpages) shall be hosted on an S3 bucket. (Implemented)
+* Users can upload a document or image of their receipt when submitting reimbursements which can stored in the database and reviewed by a financial manager. (**Implemented**)
+* Application shall be hosted remotely on an EC2. (**Implemented**)
+* Static files (webpages) shall be hosted on an S3 bucket. (**Implemented**)
 
 ## Screenshots
 
 **Login page**
 ![](./imgs/ss0.JPG)
 
+
 **Employee page**
 ![](./imgs/ss1.JPG)
+
 
 **New reimbursement form**
 ![](./imgs/ss2.JPG)
 
+
 **Approving a reimbursement**
-![](./imgs/ss3.JPG)
+![](./imgs/ss4.JPG)
