@@ -24,7 +24,7 @@ The Expense Reimbursement System (ERS) will manage the process of reimbursing em
 ## Features
 
 * Login
-* -Passwords are encrypted
+  - Passwords are encrypted
 
 
 
