@@ -38,17 +38,17 @@ The back-end system shall use Hibernate to connect to an AWS RDS Postgres databa
 
 ## Screenshots
 
-**Login page**
+###### Login page
 ![](./imgs/ss0.JPG)
 
 
-**Employee page**
+###### Employee page
 ![](./imgs/ss1.JPG)
 
 
-**New reimbursement form**
+###### New reimbursement form
 ![](./imgs/ss2.JPG)
 
 
-**Approving a reimbursement**
+###### Approving a reimbursement
 ![](./imgs/ss4.JPG)
