@@ -35,9 +35,27 @@ The Expense Reimbursement System (ERS) will manage the process of reimbursing em
 * 
 
 ## Getting Started
-* Use git clone to clone https://github.com/SacredBovine/project2-CryptoCapitol.git onto local machine
+* Use git clone https://github.com/210927-JavaFS/project1-mcmarioman.git to clone project into your local machine
+* Open project on STS 4
+* Run project as a Java Application
+* Database points to an AWS RDS PostgreSQL instance with public access.
+* Front-End is stored on src/main/resources/static folder
 
 ## Usage
+* On the browser, go to : http://localhost:4200/
+* To login as an employee use credentials:
+  - user: mario.vidal
+  - password: password
+* To login as a manager user credentials:
+  - user: manager
+  - password: admin
+* Once logged in, use the tabs to switch options
+* Homepage shows case history and their current status
+* To add a new case go to New Reimbursement tab
+* Login as a manager to approve/deny reimbursements
+* Go to the Requests tab to see pending approval cases
+* Clic on approve or deny button for each request and confirm. 
+
 
 
 ## Technical Requirements
