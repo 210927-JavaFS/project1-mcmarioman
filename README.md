@@ -32,7 +32,6 @@ The Expense Reimbursement System (ERS) will manage the process of reimbursing em
 * Manager can also submit a reimbursement case
 * Manager homepage has an extra option to approve/deny cases
 * Employees can attach an image of the receipt to the case
-* 
 
 ## Getting Started
 * Use git clone https://github.com/210927-JavaFS/project1-mcmarioman.git to clone project into your local machine
